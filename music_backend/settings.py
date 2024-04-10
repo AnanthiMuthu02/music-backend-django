@@ -11,24 +11,23 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+from corsheaders.defaults import default_headers
+ 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+ 
 SECRET_KEY = 'django-insecure-pcjl9zpy)f52v0+4_53-6j==+)os(z=8$3467b1gmt&n!tx4mj'
-
-# SECURITY WARNING: don't run with debug turned on in production!
+ 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
-
-# Application definition
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "x-api-key",
+    "App-AUTH",
+    "x-settings-key",
+    "Access-Control-Allow-Origin",
+]
+ 
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'music'
+    'music',
+    "corsheaders"
 ]
 
 MIDDLEWARE = [
@@ -48,15 +48,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'corsheaders.middleware.CorsMiddleware',
     # 'music.middleware.ApiKeyMiddleware'
 ]
 
 ROOT_URLCONF = 'music_backend.urls'
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # Replace with your React frontend URL
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR,'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

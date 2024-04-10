@@ -5,6 +5,7 @@ from django.conf import settings
 
 class Artist(models.Model):
     name = models.CharField(max_length=100)
+    img =models.FileField(upload_to='images/',null=True,blank=True)
     bio = models.TextField(null=True,blank=True)
     is_active = models.BooleanField(default=True)
     created_at=models.DateTimeField(auto_now_add=True)
@@ -12,6 +13,11 @@ class Artist(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+    def get_img_url(self):
+        if self.img:
+            return settings.MEDIA_BASE_URL + self.img.url
+        return None
 
 class Album(models.Model):
     title = models.CharField(max_length=100)
