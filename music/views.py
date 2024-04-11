@@ -94,11 +94,12 @@ def get_songs_by_album(request):
         song_data = {
             'id': song.id,
             'title': song.title,
-            'feature_img': song.feature_img.url if song.feature_img else None,
+            'feature_img': song.get_feature_img_url(),
             'album': {
                 'id': song.album.id,
                 'title': song.album.title,
                 'artist': song.album.artist.name if song.album.artist else None,
+                'bio':song.album.artist.bio if song.album.artist.bio else None,
                 'feature_img': song.album.get_feature_img_url(), 
             },
             'created_at': song.created_at,
