@@ -7,7 +7,10 @@ name = "pypi"
 django = "*"
 psycopg2 = "*"
 django-cors-headers = "*"
+<<<<<<< HEAD
 django-import-export = "*"
+=======
+>>>>>>> 197799f97f0c8003d7285219036ac9f332aef31a
 
 [dev-packages]
 

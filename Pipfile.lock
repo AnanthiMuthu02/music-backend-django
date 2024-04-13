@@ -1,7 +1,11 @@
 {
     "_meta": {
         "hash": {
+<<<<<<< HEAD
             "sha256": "1366d34ebe7c131680e634226d6ea80a090179724360634c0a330852c9af4546"
+=======
+            "sha256": "a098d2b5dd4a0f964157c3b19db663572af2b22dc6e290fcc8f0dc5728acffe0"
+>>>>>>> 197799f97f0c8003d7285219036ac9f332aef31a
         },
         "pipfile-spec": 6,
         "requires": {
@@ -58,6 +62,7 @@
             "markers": "python_version >= '3.8'",
             "version": "==4.3.1"
         },
+<<<<<<< HEAD
         "django-import-export": {
             "hashes": [
                 "sha256:2eac09e8cec8670f36e24314760448011ad23c51e8fb930d55f50d0c3c926da0",
@@ -95,6 +100,8 @@
             ],
             "version": "==3.1.2"
         },
+=======
+>>>>>>> 197799f97f0c8003d7285219036ac9f332aef31a
         "psycopg2": {
             "hashes": [
                 "sha256:121081ea2e76729acfb0673ff33755e8703d45e926e416cb59bae3a86c6a4981",
