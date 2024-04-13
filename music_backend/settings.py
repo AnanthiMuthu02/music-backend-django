@@ -82,17 +82,7 @@ WSGI_APPLICATION = 'music_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'musicDb',
-#         'PASSWORD': 'admin@123',
-#         'USER': 'postgres',
-#         'PORT': 5432,
-#         'HOST': 'localhost',
 
-#     }
-# }
 
 DATABASES = {
     'default': {
