@@ -8,7 +8,7 @@ from .models import Artist, Album, Song
 
 def get_all_artists(request):
     artists = Artist.objects.filter(is_active=True)
-    data = [{'id': artist.id, 'name': artist.name} for artist in artists]
+    data = [{'id': artist.id, 'name': artist.name,'img':artist.get_img_url()} for artist in artists]
     return JsonResponse(data, safe=False)
 
 
@@ -78,3 +78,33 @@ def get_albums_with_songs_api(request):
         
         albums_data.append(album_data)
     return JsonResponse(albums_data, safe=False)
+
+
+
+def get_songs_by_album(request):
+
+    id = request.GET.get("id")
+    if id is None:
+        return JsonResponse({"message":"id is not defined"})
+    songs = Song.objects.filter(album_id=id).select_related('album').filter(is_active=True)
+
+    # Prepare JSON data to return
+    songs_data = []
+    for song in songs:
+        song_data = {
+            'id': song.id,
+            'title': song.title,
+            'feature_img': song.get_feature_img_url(),
+            'album': {
+                'id': song.album.id,
+                'title': song.album.title,
+                'artist': song.album.artist.name if song.album.artist else None,
+                'bio':song.album.artist.bio if song.album.artist.bio else None,
+                'feature_img': song.album.get_feature_img_url(), 
+            },
+            'created_at': song.created_at,
+            'updated_at': song.upated_at
+        }
+        songs_data.append(song_data)
+
+    return JsonResponse(songs_data, safe=False)
